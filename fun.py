@@ -30,7 +30,7 @@ def play_note(note, dur=0.25):
 
     # Adjust for octaves
     oct_adjusted_freq = notes[note] * (2 ** octave)
-    print(oct_adjusted_freq)
+    print(note, octave, oct_adjusted_freq)
     nw.sine(oct_adjusted_freq, duration=dur)
 
 def play_notes_old(notesAndOcts, dur=0.25):
@@ -45,11 +45,23 @@ def play_notes(notes, dur=0, sleep=True):
 
 def play_song(rHand, lHand, noteNps):
     for noteR, noteL, nps in zip(rHand, lHand, noteNps):
-        if noteR != '-':
-            play_note(noteR, dur=nps)
-        if noteL != '-':
-            play_note(noteL, dur=nps)
+        for i, note in enumerate([noteR, noteL]):
+            if note[:-1] == 'C':
+                play_chord(note, dur=nps)
+            if note != '-':
+                play_note(note, dur=nps)
         time.sleep(nps)
+
+def play_chord(chord, dur=1):
+    note, octave = chord[:-1], chord[-1]
+    chords = {
+        'C': ('C', 'E', 'G')
+    }
+    # Add octave
+    notes = []
+    for note in chords[note]:
+        notes.append(note + octave)
+    play_notes(notes, dur)
 
 if __name__ == '__main__':
     # C major3
@@ -62,7 +74,6 @@ if __name__ == '__main__':
     noteScalars = [nps]*(len(lHand)-1) + [nps*4]
     print(noteScalars)
     play_song(rHand, lHand, noteScalars)
-
 
     # Megalovania
     # play_notes([("D", 3), ("D", 2)], .12)
