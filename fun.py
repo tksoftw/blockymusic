@@ -55,7 +55,7 @@ def play_song(rHand, lHand, noteNps):
 def play_chord(chord, dur=1):
     note, octave = chord[:-1], chord[-1]
     chords = {
-        'C': ('C', 'E', 'G')
+        'C': ('C', 'E', 'G'),
     }
     # Add octave
     notes = []
