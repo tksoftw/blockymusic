@@ -34,7 +34,7 @@ def play_note(note, dur=0.25):
     nw.sine(oct_adjusted_freq, duration=dur)
 
 def play_notes_old(notesAndOcts, dur=0.25):
-    dur *= 3
+    #dur *= 3
     for note, octave in notesAndOcts:
         play_note(note + str(octave), dur)
     time.sleep(dur)
@@ -46,8 +46,8 @@ def play_notes(notes, dur=0, sleep=True):
 def play_song(rHand, lHand, noteNps):
     for noteR, noteL, nps in zip(rHand, lHand, noteNps):
         for i, note in enumerate([noteR, noteL]):
-            if note[:-1] == 'C':
-                play_chord(note, dur=nps)
+            # if note[:-1] == 'C':
+            #     play_chord(note, dur=nps)
             if note != '-':
                 play_note(note, dur=nps)
         time.sleep(nps)
@@ -76,52 +76,52 @@ if __name__ == '__main__':
     play_song(rHand, lHand, noteScalars)
 
     # Megalovania
-    # play_notes([("D", 3), ("D", 2)], .12)
-    # play_notes([("D", 3), ("D", 2)], .12)
-    # play_notes([("D", 4), ("D", 2)], .2)
-    # play_notes([("A", 3), ("D", 2)], .3)
-    # play_notes([("Ab", 3), ("D", 2)], .2)
-    # play_notes([("G", 3), ("D", 2)], .2)
-    # play_notes([("F", 3), ("D", 2)], .2)
-    # play_notes([("D", 3), ("D", 2)], .12)
-    # play_notes([("F", 3), ("D", 2)], .1)
-    # play_notes([("G", 3), ("D", 2)], .1)
+    # play_notes_old([("D", 3), ("D", 2)], .12)
+    # play_notes_old([("D", 3), ("D", 2)], .12)
+    # play_notes_old([("D", 4), ("D", 2)], .2)
+    # play_notes_old([("A", 3), ("D", 2)], .3)
+    # play_notes_old([("Ab", 3), ("D", 2)], .2)
+    # play_notes_old([("G", 3), ("D", 2)], .2)
+    # play_notes_old([("F", 3), ("D", 2)], .2)
+    # play_notes_old([("D", 3), ("D", 2)], .12)
+    # play_notes_old([("F", 3), ("D", 2)], .1)
+    # play_notes_old([("G", 3), ("D", 2)], .1)
 
     # time.sleep(0.1)
 
-    # play_notes([("C", 3), ("C", 2)], .12)
-    # play_notes([("C", 3), ("C", 2)], .12)
-    # play_notes([("D", 4), ("C", 2)], .2)
-    # play_notes([("A", 3), ("C", 2)], .3)
-    # play_notes([("Ab", 3), ("C", 2)], .2)
-    # play_notes([("G", 3), ("C", 2)], .2)
-    # play_notes([("F", 3), ("C", 2)], .2)
-    # play_notes([("D", 3), ("C", 2)], .12)
-    # play_notes([("F", 3), ("C", 2)], .1)
-    # play_notes([("G", 3), ("C", 2)], .1)
+    # play_notes_old([("C", 3), ("C", 2)], .12)
+    # play_notes_old([("C", 3), ("C", 2)], .12)
+    # play_notes_old([("D", 4), ("C", 2)], .2)
+    # play_notes_old([("A", 3), ("C", 2)], .3)
+    # play_notes_old([("Ab", 3), ("C", 2)], .2)
+    # play_notes_old([("G", 3), ("C", 2)], .2)
+    # play_notes_old([("F", 3), ("C", 2)], .2)
+    # play_notes_old([("D", 3), ("C", 2)], .12)
+    # play_notes_old([("F", 3), ("C", 2)], .1)
+    # play_notes_old([("G", 3), ("C", 2)], .1)
 
     # time.sleep(0.1)
 
-    # play_notes([("B", 2), ("B", 1)], .12)
-    # play_notes([("B", 2), ("B", 1)], .12)
-    # play_notes([("D", 4), ("B", 1)], .2)
-    # play_notes([("A", 3), ("B", 1)], .3)
-    # play_notes([("Ab", 3), ("B", 1)], .2)
-    # play_notes([("G", 3), ("B", 1)], .2)
-    # play_notes([("F", 3), ("B", 1)], .2)
-    # play_notes([("D", 3), ("B", 1)], .12)
-    # play_notes([("F", 3), ("B", 1)], .1)
-    # play_notes([("G", 3), ("B", 1)], .1)
+    # play_notes_old([("B", 2), ("B", 1)], .12)
+    # play_notes_old([("B", 2), ("B", 1)], .12)
+    # play_notes_old([("D", 4), ("B", 1)], .2)
+    # play_notes_old([("A", 3), ("B", 1)], .3)
+    # play_notes_old([("Ab", 3), ("B", 1)], .2)
+    # play_notes_old([("G", 3), ("B", 1)], .2)
+    # play_notes_old([("F", 3), ("B", 1)], .2)
+    # play_notes_old([("D", 3), ("B", 1)], .12)
+    # play_notes_old([("F", 3), ("B", 1)], .1)
+    # play_notes_old([("G", 3), ("B", 1)], .1)
 
     # time.sleep(0.1)
 
-    # play_notes([("Bb", 2), ("Bb", 1)], .12)
-    # play_notes([("Bb", 2), ("Bb", 1)], .12)
-    # play_notes([("D", 4), ("Bb", 1)], .2)
-    # play_notes([("A", 3), ("Bb", 1)], .3)
-    # play_notes([("Ab", 3), ("Bb", 1)], .2)
-    # play_notes([("G", 3), ("Bb", 1)], .2)
-    # play_notes([("F", 3), ("Bb", 1)], .2)
-    # play_notes([("D", 3), ("Bb", 1)], .12)
-    # play_notes([("F", 3), ("Bb", 1)], .1)
-    # play_notes([("G", 3), ("Bb", 1)], .1)
+    # play_notes_old([("Bb", 2), ("Bb", 1)], .12)
+    # play_notes_old([("Bb", 2), ("Bb", 1)], .12)
+    # play_notes_old([("D", 4), ("Bb", 1)], .2)
+    # play_notes_old([("A", 3), ("Bb", 1)], .3)
+    # play_notes_old([("Ab", 3), ("Bb", 1)], .2)
+    # play_notes_old([("G", 3), ("Bb", 1)], .2)
+    # play_notes_old([("F", 3), ("Bb", 1)], .2)
+    # play_notes_old([("D", 3), ("Bb", 1)], .12)
+    # play_notes_old([("F", 3), ("Bb", 1)], .1)
+    # play_notes_old([("G", 3), ("Bb", 1)], .1)
