@@ -1,8 +1,7 @@
 import newsine as nw
 import time
 
-def play_note(note, dur=0.25):
-    # Account for octave
+def get_note_freq(note):
     octave = int(note[-1])
     note = note[:-1]
 
@@ -30,8 +29,11 @@ def play_note(note, dur=0.25):
 
     # Adjust for octaves
     oct_adjusted_freq = notes[note] * (2 ** octave)
-    print(note, octave, oct_adjusted_freq)
-    nw.sine(oct_adjusted_freq, duration=dur)
+    return oct_adjusted_freq
+
+def play_note(note, dur=0.25):
+    freq = get_note_freq(note)
+    nw.sine(freq, duration=dur)
 
 def play_notes_old(notesAndOcts, dur=0.25):
     #dur *= 3
@@ -62,6 +64,10 @@ def play_chord(chord, dur=1):
     for note in chords[note]:
         notes.append(note + octave)
     play_notes(notes, dur)
+
+def play_note_on_key(note, key):
+    pass
+
 
 if __name__ == '__main__':
     # C major3
