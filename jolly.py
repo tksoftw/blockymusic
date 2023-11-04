@@ -2,6 +2,7 @@ import time
 import pygame
 from fun import get_note_freq
 from newsine import start_sine, end_sine, prepare_sine, data_store
+import pysine
 
 def change_octave(key_map, offset):
     for k, v in key_map.copy().items():
@@ -32,8 +33,11 @@ def draw_note_indicator(screen, note, base_octave=4):
     pygame.draw.rect(screen, 'red', light)
     pygame.display.update()
 
-def reset_screen(screen, image):
+def reset_screen(screen, image, notes_displayed=None):
     screen.blit(image, image.get_rect())
+    if notes_displayed is not None:
+        for note, oct in notes_displayed.items():
+            draw_note_indicator(screen, note, base_octave=oct)
     pygame.display.update()
 
 def play_note(note, duration=1):
@@ -89,41 +93,46 @@ def play_song():
         else:
             play_chord(item, time_between_notes)
 
+                
+
 if __name__ == "__main__":
-    pygame.init()
-    screen =  pygame.display.set_mode((640,480))
+    pass
+    #piano()
+    # pygame.init()
+    # screen =  pygame.display.set_mode((640,480))
 
-    key_map = {
-        pygame.K_a: "C4",
-        pygame.K_s: "D4",
-        pygame.K_d: "E4",
-        pygame.K_f: "F4",
-        pygame.K_g: "G4",
-        pygame.K_h: "A4",
-        pygame.K_j: "B4",
-        pygame.K_k: "C5",
-        pygame.K_l: "D5",
-        pygame.K_SEMICOLON: "E5",
-        pygame.K_QUOTE: "F5",
+    # key_map = {
+    #     pygame.K_a: "C4",
+    #     pygame.K_s: "D4",
+    #     pygame.K_d: "E4",
+    #     pygame.K_f: "F4",
+    #     pygame.K_g: "G4",
+    #     pygame.K_h: "A4",
+    #     pygame.K_j: "B4",
+    #     pygame.K_k: "C5",
+    #     pygame.K_l: "D5",
+    #     pygame.K_SEMICOLON: "E5",
+    #     pygame.K_QUOTE: "F5",
 
-        pygame.K_w: "C#4",
-        pygame.K_e: "D#4",
-        pygame.K_t: "F#4",
-        pygame.K_y: "G#4",
-        pygame.K_u: "A#4",
-        pygame.K_o: "C#5",
-        pygame.K_p: "D#5",
-        pygame.K_RIGHTBRACKET: "F#5"
-    }
+    #     pygame.K_w: "C#4",
+    #     pygame.K_e: "D#4",
+    #     pygame.K_t: "F#4",
+    #     pygame.K_y: "G#4",
+    #     pygame.K_u: "A#4",
+    #     pygame.K_o: "C#5",
+    #     pygame.K_p: "D#5",
+    #     pygame.K_RIGHTBRACKET: "F#5"
+    # }
 
-    picture = pygame.image.load('piano.jpg')
-    picture = pygame.transform.scale(picture, pygame.display.get_surface().get_size())
-    screen.blit(picture, picture.get_rect())
-    pygame.display.update()
+    # picture = pygame.image.load('piano.jpg')
+    # picture = pygame.transform.scale(picture, pygame.display.get_surface().get_size())
+    # screen.blit(picture, picture.get_rect())
+    # pygame.display.update()
 
 
-    note = 'C4'
-    chord = ['C4', 'E4', 'G4']
+    # note = 'C4'
+    # chord = ['C4', 'E4', 'G4']
+    # prepare_song([note] + chord)
     # play_note(note, 0.25)
     # play_note(note, 0.25)
     # play_note(note, 0.25)
@@ -135,25 +144,25 @@ if __name__ == "__main__":
     # play_chord(chord, 0.25)
     # play_chord(chord, 0.25)
 
-    cur_octave = 4
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
-                change_octave(key_map, 1)
-                cur_octave += 1
-                print("current octave:", key_map[pygame.K_a][-1])
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-                change_octave(key_map, -1)
-                cur_octave -= 1
-                print("current octave:", key_map[pygame.K_a][-1])
-            if event.type == pygame.KEYDOWN and event.key in key_map:
-                start_sine(get_note_freq(key_map[event.key]))
-                draw_note_indicator(screen, key_map[event.key], base_octave=cur_octave)
-            elif event.type == pygame.KEYUP and event.key in key_map:
-                end_sine(get_note_freq(key_map[event.key]))
-                reset_screen(screen, picture)
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_0:
-                play_song()
+    # cur_octave = 4
+    # while True:
+    #     for event in pygame.event.get():
+    #         if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+    #             change_octave(key_map, 1)
+    #             cur_octave += 1
+    #             print("current octave:", key_map[pygame.K_a][-1])
+    #         if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+    #             change_octave(key_map, -1)
+    #             cur_octave -= 1
+    #             print("current octave:", key_map[pygame.K_a][-1])
+    #         if event.type == pygame.KEYDOWN and event.key in key_map:
+    #             start_sine(get_note_freq(key_map[event.key]))
+    #             draw_note_indicator(screen, key_map[event.key], base_octave=cur_octave)
+    #         elif event.type == pygame.KEYUP and event.key in key_map:
+    #             end_sine(get_note_freq(key_map[event.key]))
+    #             reset_screen(screen, picture)
+    #         elif event.type == pygame.KEYDOWN and event.key == pygame.K_0:
+    #             play_song()
                 
 
 

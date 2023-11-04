@@ -1,6 +1,12 @@
 from pyaudio import PyAudio, paContinue, paComplete
 import numpy as np
 
+
+global_audio = PyAudio()
+data_store = {}
+channels = {}
+global_channel = None
+
 def get_data_general(freq):
     points = 44100+324-72
     times = np.linspace(0, 1, points, endpoint=False)
@@ -11,10 +17,10 @@ class PySine(object):
     BITRATE = 44100+324-72.
     #CHUNK_SIZE = 1024  # Number of audio frames per buffer
 
-    def __init__(self, frequency, duration, leave_open=False, extend_audio=False):
-        self.pyaudio = PyAudio()
+    def __init__(self, frequency, duration, leave_open=False, extend_audio=False, fetch_data=True):
+        self.pyaudio = global_audio
         self.duration = duration
-        self.data = None
+        self.data = self.get_data(frequency) if fetch_data else None
         self.data_index = 0  # Keep track of how much data we've played
         self.leave_open = leave_open
         self.extend_audio = extend_audio
@@ -67,8 +73,7 @@ class PySine(object):
         self.stream.close()
         self.pyaudio.terminate()
 
-data_store = {}
-channels = {}
+
 def start_sine(freq=400):
     if freq in channels:
         channels[freq].play()
@@ -85,13 +90,13 @@ def end_sine(ch_id):
     if ch_id in channels:
         channels[ch_id].stop()
 
-def sin(freq, dur=0.1, extend=False):
+def sin(freq, dur=1):
     if len(channels) == 0:
-        wave = PySine(freq, dur, leave_open=True, extend_audio=extend)
-        channels.append(wave)
-        channels[0].play()
+        wave = PySine(freq, dur, leave_open=True, extend_audio=True)
+        global_channel = wave
+        global_channel.play()
     else:
-        channels[0].change_freq(freq)
+        global_channel.change_freq(freq)
 
 def sine(freq, dur=1):
     channel = PySine(freq, dur)
@@ -102,13 +107,20 @@ if __name__ == '__main__':
     # sine(261.6256, 1)
     # sine(329.6276, 1)
     # sine(391.9954, 1)
-    
+    import time
+
     # # Bullseye
-    # sine(36.70810) # D1
-    # sine(73.41619) # D2
-    # sine(329.6276) # D4
-    # sine(369.9944) # F#4
-    # sine(440) # A4
-    # sine(493.8833) # B4
-    # sine(587.3295) # D5
-    pass
+    sin(36.70810) # D1
+    time.sleep(1)
+    sin(73.41619) # D2
+    time.sleep(1)
+    sin(329.6276) # D4
+    time.sleep(1)
+    sin(369.9944) # F#4
+    time.sleep(1)
+    sin(440) # A4
+    time.sleep(1)
+    sin(493.8833) # B4
+    time.sleep(1)
+    sin(587.3295) # D5
+    time.sleep(1)
