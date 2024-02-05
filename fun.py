@@ -1,4 +1,4 @@
-import newsine as nw
+import oldsine as nw
 import time
 
 def get_note_freq(note):

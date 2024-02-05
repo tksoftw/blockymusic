@@ -1,8 +1,8 @@
 import time
 import pygame
 from fun import get_note_freq
-from newsine import start_sine, end_sine, prepare_sine, data_store
-import pysine
+from oldsine import start_sine, end_sine, prepare_sine, data_store
+import pysinenew
 
 def change_octave(key_map, offset):
     for k, v in key_map.copy().items():

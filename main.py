@@ -1,12 +1,41 @@
-import pysine
-from fun import get_note_freq
+import pysinenew
 import time
 import pygame
 pygame.init()
 
+def get_note_freq(note):
+    octave = int(note[-1])
+    note = note[:-1]
+
+    notes = {
+        "C": 16.35,
+        "C#": 17.32,
+        "Db": 17.32,
+        "D": 18.35,
+        "D#": 19.45,
+        "Eb": 19.45,
+        "Eb": 19.45,
+        "E": 20.60,
+        "F": 21.83,
+        "F#": 23.12,
+        "Gb": 23.12,
+        "G": 24.50,
+        "G#": 25.96,
+        "G#": 25.96,
+        "Ab": 25.96,
+        "A": 27.50,
+        "A#": 29.14,
+        "Bb": 29.14,
+        "B": 30.87,
+    }
+
+    # Adjust for octaves
+    oct_adjusted_freq = notes[note] * (2 ** octave)
+    return oct_adjusted_freq
+
 def play_note(note, duration=1):
     note_freq = get_note_freq(note)
-    wave = pysine.sine(note_freq)
+    wave = pysinenew.sine(note_freq)
     time.sleep(duration)
     wave.stop()
 
@@ -17,7 +46,7 @@ def play_chord(chord, duration=1, custom_player=None, custom_stopper=None):
         custom_stopper(chord)
     else:
         note_freqs = [get_note_freq(note) for note in chord]
-        wave = pysine.sines(note_freqs)
+        wave = pysinenew.sines(note_freqs)
         time.sleep(duration)
         wave.stop()
 
@@ -103,10 +132,9 @@ class piano:
         pygame.display.update()
 
         self.cur_displayed_notes = set()
-        self.cur_wave = pysine.sine(0)
+        self.cur_wave = pysinenew.sine(0)
         self.cur_octave = 4
-
-
+    
     def run(self):
         played = False
         while True:
@@ -201,7 +229,6 @@ class piano:
 # def pian2o():
 #     screen =  pygame.display.set_mode((640,480))
 
-
 #     key_map = {
 #         pygame.K_a: "C4",
 #         pygame.K_s: "D4",
@@ -231,7 +258,7 @@ class piano:
 #     pygame.display.update()
 
 #     cur_displayed_notes = {}
-#     cur_wave = pysine.sine(0)
+#     cur_wave = pysinenew.sine(0)
 #     cur_octave = 4
 #     while True:
 #         time.sleep(0.0001)
@@ -271,4 +298,3 @@ if __name__ == "__main__":
     # play_chord(chord, 0.25)
     # play_chord(chord, 0.25)
     # play_chord(chord, 0.25)
-    

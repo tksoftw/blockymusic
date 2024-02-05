@@ -1,4 +1,4 @@
-import newsine as nw
+import oldsine as nw
 import time
 
 sub = 1.95
