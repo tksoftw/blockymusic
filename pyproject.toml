@@ -1,0 +1,18 @@
+[build-system]
+requires = ["flit_core>=3.8,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "blockymusic"
+version = "0.1.0"
+description = "Keyboard piano via sine waves"
+requires-python = ">=3.6.8"
+dependencies = [
+    "numpy",
+    "pygame-ce",
+    "PyAudio==0.2.11; python_version == '3.6' and sys_platform == 'win32'",
+    "PyAudio; python_version != '3.6' or sys_platform != 'win32'",
+]
+
+[tool.flit.module]
+name = "pysinenew"

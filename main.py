@@ -115,6 +115,7 @@ class piano:
             pygame.K_l: "D5",
             pygame.K_SEMICOLON: "E5",
             pygame.K_QUOTE: "F5",
+            pygame.K_RETURN: "G5",
 
             pygame.K_w: "C#4",
             pygame.K_e: "D#4",
