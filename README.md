@@ -1,6 +1,6 @@
 # BlockyMusic - A python piano!
 
-Play the piano with your keyboard. Input (and stunning visuals) powered by [PyGame](https://www.pygame.org/docs/). Audio powered by `pysinenew.py`, a custom synthasizer I made that generates samples of sine waves using [NumPy](https://numpy.org/) and plays them directly using [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/).
+Play the piano with your keyboard. Input (and stunning visuals) powered by [PyGame](https://www.pygame.org/docs/). Audio powered by [pysinenew.py](pysinenew.py), a custom synthasizer I made that generates samples of sine waves using [NumPy](https://numpy.org/) and plays them directly using [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/).
 
 Hold **G**, **J**, and **L** together to play the G major chord shown below.
 
